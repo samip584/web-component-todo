@@ -110,8 +110,6 @@ class TodoInput extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.initialAddTodo.removeEventListener('mouseover', this.colorRed);
-    this.initialAddTodo.removeEventListener('mouseout', this.colorNormal);
     this.initialAddTodo.removeEventListener('click', this.showInput);
     this.addButton.removeEventListener('click', this.dispatchCreateTodoEvent);
     this.cancelButton.removeEventListener('click', this.hideInput);

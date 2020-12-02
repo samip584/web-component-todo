@@ -52,7 +52,7 @@ class ToDoApp {
 
   saveTodos = () => {
     const todos = JSON.stringify(this.todos);
-
+    console.log(todos)
     localStorage.setItem('todos', todos);
   };
 

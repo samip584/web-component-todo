@@ -52,13 +52,36 @@ doneToggleTemplate.innerHTML = `
 `
 
 class DoneToggle extends HTMLElement {
+  static get observedAttributes() {
+    return ['complete'];
+  }
   constructor(){
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(
       document.importNode(doneToggleTemplate.content, true)
     );
+    this.checkbox = this.shadowRoot.querySelector('#checkbox');
+  }
+  connectedCallback() {
+    this.checkbox.addEventListener('change', this.dispatchToggleEvent)
+  }
+  disconnectedCallback() {
+    removeEventListener('change', this.dispatchToggleEvent)
+  }
+  
+  dispatchToggleEvent = (e) => {
+    this.dispatchEvent(new CustomEvent('toggle', { bubbles: true }));
+  };
+  
+  attributeChangedCallback(attrName, oldVal, newVal) {
+    if (attrName === 'complete') {
+      if (newVal === 'true') {
+        this.checkbox.checked = true;
+      } else {
+        this.checkbox.checked = false;
+      }
+    }
   }
 }
-
 window.customElements.define('done-toggle', DoneToggle);
