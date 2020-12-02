@@ -33,7 +33,7 @@ class ToDoApp {
         (todo) => todo.id === +todoElement.id
       );
       todoItemInArray.complete = !todoItemInArray.complete;
-
+      todoElement.setAttribute('complete', todoItemInArray.complete)
       this.saveTodos();
     });
   };
@@ -51,7 +51,6 @@ class ToDoApp {
 
   saveTodos = () => {
     const todos = JSON.stringify(this.todos);
-    console.log(todos)
     localStorage.setItem('todos', todos);
   };
 

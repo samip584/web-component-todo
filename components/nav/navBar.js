@@ -1,5 +1,6 @@
-const navTemplate = document.createElement('template');
-navTemplate.innerHTML = `
+import { html, render} from 'https://unpkg.com/lit-html?module';
+
+const navTemplate= html`
   <style>
     h1{
       color: #ffffff;
@@ -20,7 +21,7 @@ class navBar extends HTMLElement {
   constructor(){
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(document.importNode(navTemplate.content, true));
+    render(navTemplate, this.shadowRoot);
   }
 }
 
