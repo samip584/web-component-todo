@@ -7,10 +7,19 @@ todoInputTemplate.innerHTML = `
     .add-todo:hover{
       cursor: pointer;
     }
+    .add-todo:hover .add-sign-container{
+      background-color: #dd4b39;
+      color: #fff;
+    }
+    .add-todo:hover .add-text{
+      color: #dd4b39;
+    }
     .add-text{
+      transition: all 0.4s ease;
       color: #686868;
     }
     .add-sign-container{
+      transition: all 0.4s ease;
       border-radius:50%;
       background-color: #fff;
       margin-right: 10px;
@@ -95,8 +104,6 @@ class TodoInput extends HTMLElement {
   }
 
   connectedCallback() {
-    this.initialAddTodo.addEventListener('mouseover', this.colorRed);
-    this.initialAddTodo.addEventListener('mouseout', this.colorNormal);
     this.initialAddTodo.addEventListener('click', this.showInput);
     this.addButton.addEventListener('click', this.dispatchCreateTodoEvent);
     this.cancelButton.addEventListener('click', this.hideInput);
@@ -108,18 +115,6 @@ class TodoInput extends HTMLElement {
     this.initialAddTodo.removeEventListener('click', this.showInput);
     this.addButton.removeEventListener('click', this.dispatchCreateTodoEvent);
     this.cancelButton.removeEventListener('click', this.hideInput);
-  }
-
-  colorRed = (e) => {
-    this.addSign.style.backgroundColor = "#dd4b39";
-    this.addSign.style.color = "#fff";
-    this.addSignText.style.color = "#dd4b39";
-  }
-
-  colorNormal = (e) => {
-    this.addSign.style.backgroundColor = "#fff";
-    this.addSign.style.color = "#be4e40";
-    this.addSignText.style.color = "#686868";
   }
 
   showInput = (e) => {
