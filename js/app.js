@@ -20,7 +20,7 @@ class ToDoApp {
 
       this.todos = [...this.todos, todo];
       this.todoList.innerHTML =
-        this.getTodoElement(todo) + this.todoList.innerHTML;
+         this.todoList.innerHTML + this.getTodoElement(todo);
 
       this.saveTodos();
     });
@@ -33,7 +33,6 @@ class ToDoApp {
         (todo) => todo.id === +todoElement.id
       );
       todoItemInArray.complete = !todoItemInArray.complete;
-      todoElement.setAttribute('complete', todoItemInArray.complete);
 
       this.saveTodos();
     });
@@ -59,7 +58,7 @@ class ToDoApp {
   getTodos = () => {
     const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-    return todos.reverse();
+    return todos;
   };
 
   renderTodos = () => {
